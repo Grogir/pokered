@@ -798,9 +798,10 @@ ThrashPetalDanceEffect:
 	set THRASHING_ABOUT, [hl] ; mon is now using thrash/petal dance
 	call BattleRandom
 	and $1
-	inc a
-	inc a
-	inc a
+	; inc a
+	; inc a
+	; inc a
+	add $3 ; align memory
 	ld [de], a ; set thrash/petal dance counter to 2 or 3 at random
 	ldh a, [hWhoseTurn]
 	add ANIM_B0

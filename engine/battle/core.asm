@@ -4638,7 +4638,8 @@ CriticalHitTest:
 	call BattleRandom            ; generates a random value, in "a"
 	rlc a
 	rlc a
-	rlc a
+	; rlc a
+	nop                          ; align memory
 	cp 0                         ; don't crit
 	ret nc                       ; no critical hit if no borrow
 	ld a, $1
@@ -5425,14 +5426,14 @@ MoveHitTest:
 .doAccuracyCheck
 ; if the random number generated is greater than or equal to the scaled accuracy, the move misses
 ; note that this means that even the highest accuracy is still just a 255/256 chance, not 100%
-
-	ld a, b
-	cp $ff
-	ret
-
+	; ld a, b
+	; cp $ff
+	; ret
 	call BattleRandom
 	cp b
-	jr nc, .moveMissed
+	; jr nc, .moveMissed ; moves can't miss
+	nop ; align memory
+	nop ; align memory
 	ret
 .moveMissed
 	xor a
@@ -5545,9 +5546,10 @@ RandomizeDamage:
 ; loop until a random number greater than or equal to 217 is generated
 .loop
 	call BattleRandom
+	rrca
 	ld a, $ff ; always do max roll
 	cp 217
-	jr c, .loop
+	; jr c, .loop ; align memory
 	ldh [hMultiplier], a
 	call Multiply ; multiply damage by the random number, which is in the range [217, 255]
 	ld a, 255
