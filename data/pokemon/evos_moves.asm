@@ -296,7 +296,7 @@ IvysaurEvosMoves:
 	db 0
 ; Learnset
 	db 7, LEECH_SEED
-	db 13, VINE_WHIP
+	; db 13, VINE_WHIP
 	db 22, POISONPOWDER
 	db 30, RAZOR_LEAF
 	db 38, GROWTH
@@ -553,8 +553,8 @@ GrowlitheEvosMoves:
 	db EV_ITEM, FIRE_STONE, 1, ARCANINE
 	db 0
 ; Learnset
-	db 18, EMBER
-	db 23, LEER
+	; db 18, EMBER
+	; db 23, LEER
 	db 30, TAKE_DOWN
 	db 39, AGILITY
 	db 50, FLAMETHROWER
@@ -1297,7 +1297,7 @@ ZubatEvosMoves:
 	db EV_LEVEL, 22, GOLBAT
 	db 0
 ; Learnset
-	db 10, SUPERSONIC
+	; db 10, SUPERSONIC
 	db 15, BITE
 	db 21, CONFUSE_RAY
 	db 28, WING_ATTACK
@@ -1309,9 +1309,9 @@ EkansEvosMoves:
 	db EV_LEVEL, 22, ARBOK
 	db 0
 ; Learnset
-	db 10, POISON_STING
-	db 17, BITE
-	db 24, GLARE
+	; db 10, POISON_STING
+	; db 17, BITE
+	; db 24, GLARE
 	db 31, SCREECH
 	db 38, ACID
 	db 0
@@ -1518,11 +1518,11 @@ GolbatEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 10, SUPERSONIC
-	db 15, BITE
-	db 21, CONFUSE_RAY
+	; db 10, SUPERSONIC
+	; db 15, BITE
+	; db 21, CONFUSE_RAY
 	db 32, WING_ATTACK
-	db 43, HAZE
+	; db 43, HAZE
 	db 0
 
 MewtwoEvosMoves:
@@ -1696,10 +1696,10 @@ PidgeottoEvosMoves:
 	db EV_LEVEL, 36, PIDGEOT
 	db 0
 ; Learnset
-	db 5, SAND_ATTACK
-	db 12, QUICK_ATTACK
-	db 21, WHIRLWIND
-	db 31, WING_ATTACK
+	; db 5, SAND_ATTACK
+	; db 12, QUICK_ATTACK
+	; db 21, WHIRLWIND
+	; db 31, WING_ATTACK
 	db 40, AGILITY
 	db 49, MIRROR_MOVE
 	db 0
