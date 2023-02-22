@@ -322,7 +322,7 @@ TrainerAI:
 INCLUDE "data/trainers/ai_pointers.asm"
 
 JugglerAI:
-	cp 25 percent + 1
+	cp 0
 	ret nc
 	jp AISwitchIfEnoughMons
 
@@ -359,12 +359,12 @@ BrockAI:
 	jp AIUseFullHeal
 
 MistyAI:
-	cp 25 percent + 1
+	cp 0
 	ret nc
 	jp AIUseXDefend
 
 LtSurgeAI:
-	cp 25 percent + 1
+	cp 0
 	ret nc
 	jp AIUseXSpeed
 
@@ -395,7 +395,7 @@ SabrinaAI:
 	jp AIUseHyperPotion
 
 Rival2AI:
-	cp 13 percent - 1
+	cp 0
 	ret nc
 	ld a, 5
 	call AICheckIfHPBelowFraction
@@ -424,11 +424,14 @@ BrunoAI:
 	jp AIUseXDefend
 
 AgathaAI:
-	cp 8 percent
+	cp 0 percent
 	jp c, AISwitchIfEnoughMons
-	cp 50 percent + 1
-	ret nc
-	ld a, 4
+	; cp 50 percent + 1
+	; ret nc
+	nop
+	nop
+	nop ; always use super potion if possible
+	ld a, 3
 	call AICheckIfHPBelowFraction
 	ret nc
 	jp AIUseSuperPotion
