@@ -98,10 +98,10 @@ PoisonEffect:
 	jr z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1
-	ld b, $34 ; ~20% chance of poisoning
+	ld b, 0 ; disable poison
 	jr z, .sideEffectTest
 	cp POISON_SIDE_EFFECT2
-	ld b, $67 ; ~40% chance of poisoning
+	ld b, 0 ; disable poison
 	jr z, .sideEffectTest
 	push hl
 	push de
@@ -212,10 +212,10 @@ FreezeBurnParalyzeEffect:
 	ret z  ; return if they match
 	ld a, [wPlayerMoveEffect]
 	cp PARALYZE_SIDE_EFFECT1 + 1
-	ld b, 10 percent + 1
+	ld b, 0 ; disable freeze/burn/para
 	jr c, .regular_effectiveness
 ; extra effectiveness
-	ld b, 30 percent + 1
+	ld b, 0 ; disable freeze/burn/para
 	sub BURN_SIDE_EFFECT2 - BURN_SIDE_EFFECT1 ; treat extra effective as regular from now on
 .regular_effectiveness
 	push af
@@ -265,10 +265,10 @@ FreezeBurnParalyzeEffect:
 	ret z
 	ld a, [wEnemyMoveEffect]
 	cp PARALYZE_SIDE_EFFECT1 + 1
-	ld b, 10 percent + 1
+	ld b, 0 ; disable freeze/burn/para
 	jr c, .regular_effectiveness2
 ; extra effectiveness
-	ld b, 30 percent + 1
+	ld b, 0 ; disable freeze/burn/para
 	sub BURN_SIDE_EFFECT2 - BURN_SIDE_EFFECT1 ; treat extra effective as regular from now on
 .regular_effectiveness2
 	push af
@@ -548,7 +548,7 @@ StatModifierDownEffect:
 	cp LINK_STATE_BATTLING
 	jr z, .statModifierDownEffect
 	call BattleRandom
-	cp $0 ; removed 1/4 status move miss
+	cp 0 ; removed 1/4 status move miss
 	jp c, MoveMissed
 .statModifierDownEffect
 	call CheckTargetSubstitute ; can't hit through substitute
@@ -557,7 +557,7 @@ StatModifierDownEffect:
 	cp ATTACK_DOWN_SIDE_EFFECT
 	jr c, .nonSideEffect
 	call BattleRandom
-	cp $55 ; 85/256 chance for side effects
+	cp 0 ; disable side effects
 	jp nc, CantLowerAnymore
 	ld a, [de]
 	sub ATTACK_DOWN_SIDE_EFFECT ; map each stat to 0-3
@@ -981,9 +981,9 @@ FlinchSideEffect:
 .flinchSideEffect
 	ld a, [de]
 	cp FLINCH_SIDE_EFFECT1
-	ld b, $1a ; ~10% chance of flinch
+	ld b, 0 ; disable flinch
 	jr z, .gotEffectChance
-	ld b, $4d ; ~30% chance of flinch
+	ld b, 0 ; disable flinch
 .gotEffectChance
 	call BattleRandom
 	cp b
@@ -1113,7 +1113,7 @@ RecoilEffect:
 
 ConfusionSideEffect:
 	call BattleRandom
-	cp $19 ; ~10% chance
+	cp 0 ; disable confused
 	ret nc
 	jr ConfusionSideEffectSuccess
 
